@@ -1,0 +1,187 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SamarOS - Minimal. Smart.</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="header card header-left">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="greeting" id="greetingText">Good Afternoon, Samar</div>  
+      <div class="time-large" id="clockDisplay">--:--</div>
+    </div>
+    <div class="header-right">
+      <div class="controls">
+        <div class="search" style="min-width:280px;max-width:420px;">
+          <span class="material-symbols-outlined" style="opacity:0.9">search</span>
+          <input id="omnibox" placeholder="Search Google or type a URL..." />
+          <span class="material-symbols-outlined mic">keyboard_voice</span>
+        </div>
+        <div class="icon-btn" id="themeToggle" title="Theme">
+          <span class="material-symbols-outlined">palette</span>
+        </div>
+        <div class="icon-btn" id="settingsBtn" title="Settings">
+          <span class="material-symbols-outlined">settings</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="left-col">
+    <div class="top-widgets">
+      <div class="card weather" id="weatherCard">
+        <div style="width:84px;height:84px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#fff3);display:flex;align-items:center;justify-content:center;">
+          <img id="weatherIcon" src="" alt="" style="width:56px;height:56px"/>
+        </div>
+        <div class="meta">
+          <div style="display:flex;gap:8px;align-items:end">
+            <div class="temp" id="tempText">--°C</div>
+            <div style="font-size:0.95rem;color:rgba(255, 255, 255, 0.6)" id="locationText">—</div>
+          </div>
+          <div class="desc" id="weatherDesc">Loading weather…</div>
+          <div class="small" id="weatherExtra">—</div>
+        </div>
+      </div>
+
+      <div class="card notes-area" style="padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:600">Quick Notes</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="icon-btn" id="newNoteBtn" title="New Note"><span class="material-symbols-outlined">note_add</span></button>
+            <button class="icon-btn" id="clearNotesBtn" title="Clear All"><span class="material-symbols-outlined">delete</span></button>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <div id="noteList" class="note-list"></div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <input id="noteInput" placeholder="Write a quick note..." style="flex:1;padding:10px;border-radius:10px;border:none;background:rgba(255,255,255,0.03);color:inherit;outline:none" />
+          <button id="saveNote" class="icon-btn" title="Save"><span class="material-symbols-outlined">check</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-grid">
+      <div class="card calendar" id="calendarCard">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:600">Calendar & To-Do</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input id="taskDate" type="date" style="padding:8px;border-radius:8px;border:none;background:rgba(255,255,255,0.03)" />
+            <button id="addTaskBtn" class="icon-btn"><span class="material-symbols-outlined">add</span></button>
+          </div>
+        </div>
+        <div class="todo-list" id="todoList" style="margin-top:12px"></div>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <input id="taskInput" placeholder="New task..." style="flex:1;padding:10px;border-radius:10px;border:none;background:rgba(255,255,255,0.03);outline:none" />
+          <button id="clearTasks" class="icon-btn"><span class="material-symbols-outlined">delete</span></button>
+        </div>
+      </div>
+
+      <div class="card" id="themeCard">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:600">Theme & Wallpaper</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input id="wallInput" type="file" accept="image/*" style="display:none"/>
+            <button id="uploadWall" class="icon-btn" title="Upload wallpaper"><span class="material-symbols-outlined">image</span></button>
+            <button id="resetTheme" class="icon-btn" title="Reset theme"><span class="material-symbols-outlined">restore</span></button>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <div class="theme-presets" id="presets">
+            <div class="preset" data-a="#6750A4" style="background:linear-gradient(90deg,#6750A4,#8E7BFF)">MU</div>
+            <div class="preset" data-a="#7B61FF" style="background:linear-gradient(90deg,#7B61FF,#4AD9FF)">V</div>
+            <div class="preset" data-a="#FF7AA2" style="background:linear-gradient(90deg,#FF7AA2,#FFD36E)">P</div>
+            <div class="preset" data-a="#00B894" style="background:linear-gradient(90deg,#00B894,#55EFC4)">G</div>
+            <div class="preset" data-a="#FF6B6B" style="background:linear-gradient(90deg,#FF6B6B,#FFDAB9)">R</div>
+            <div class="preset" data-a="#4D96FF" style="background:linear-gradient(90deg,#4D96FF,#A7C7FF)">B</div>
+            <div class="preset" data-a="#6F1E51" style="background:linear-gradient(90deg,#6F1E51,#C08497)">D</div>
+            <div class="preset" data-a="#F97316" style="background:linear-gradient(90deg,#F97316,#FFD27A)">O</div>
+            <div class="preset" data-a="#0EA5A4" style="background:linear-gradient(90deg,#0EA5A4,#99F6E4)">T</div>
+            <div class="preset" data-a="#8257E5" style="background:linear-gradient(90deg,#8257E5,#C4B5FD)">L</div>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <button id="autoTheme" class="icon-btn" title="Auto theme from wallpaper"><span class="material-symbols-outlined">auto_awesome</span></button>
+            <button id="randomAccent" class="icon-btn" title="Random accent"><span class="material-symbols-outlined">shuffle</span></button>
+            <input id="colorPicker" type="color" value="#6750A4" style="width:44px;height:44px;border-radius:8px;border:0;padding:0"/>
+            <div style="font-size:0.9rem;opacity:0.85">Accent preview:</div>
+            <div id="accentPreview" style="width:84px;height:28px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#fff3);border:1px solid rgba(0,0,0,0.06)"></div>
+            <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+              <label style="font-size:0.9rem;opacity:0.85">Dark</label>
+              <button id="darkToggle" class="icon-btn" title="Toggle dark mode"><span id="darkIcon" class="material-symbols-outlined">dark_mode</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="card quote">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-weight:600">Quote of the Moment</div>
+        <div style="display:flex;gap:8px">
+          <button id="newQuote" class="icon-btn"><span class="material-symbols-outlined">refresh</span></button>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-style:italic;font-size:1.05rem" id="quoteText">Loading…</div>
+      <div style="margin-top:8px;font-weight:500;opacity:0.8" id="quoteAuthor">—</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-weight:600">Quick Links</div>
+        <button id="editLinks" class="icon-btn"><span class="material-symbols-outlined">edit</span></button>
+      </div>
+      <div style="margin-top:12px" class="links" id="linksGrid">
+        <div class="link-card" data-url="https://mail.google.com">
+          <div class="link-favicon">G</div>
+          <div style="display:flex;flex-direction:column">
+            <div style="font-weight:600">Gmail</div>
+            <div style="font-size:0.85rem;opacity:0.8">mail.google.com</div>
+          </div>
+        </div>
+        <div class="link-card" data-url="https://www.youtube.com">
+          <div class="link-favicon">Y</div>
+          <div style="display:flex;flex-direction:column">
+            <div style="font-weight:600">YouTube</div>
+            <div style="font-size:0.85rem;opacity:0.8">youtube.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="card" style="padding:1rem;border-radius:1rem;background:var(--surface);box-shadow:0 2px 8px rgba(0,0,0,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+  <div>
+    <div style="font-weight:600;font-size:1.1rem;">About SamarOS</div>
+    <div style="font-size:0.9rem;opacity:0.8;margin-top:4px;">
+      A SamarOs –inspired personal dashboard designed for productivity, creativity, and calm.
+    </div>
+    <div style="font-size:0.85rem;margin-top:6px;opacity:0.75;">
+      Local-first • Offline-ready • Dynamic themes
+    </div>
+    <div style="font-size:0.8rem;margin-top:6px;opacity:0.8;">
+      Created by 
+      <a href="https://portfolio2025-wine.vercel.app/" target="_blank" rel="noopener noreferrer" 
+         style="font-weight:600;color:var(--accent);text-decoration:none;transition:0.3s;">
+         Samar Hirau
+      </a>
+    </div>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-weight:700;color:var(--accent);font-size:0.9rem;">v1.1</div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
